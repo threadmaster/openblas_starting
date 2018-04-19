@@ -1,0 +1,106 @@
+#PBS -N OpenBLAS_Matrix_Mult
+#PBS -j oe
+#PBS -m abe
+#PBS -l nodes=1:hammer:ppn=42
+#PBS -l walltime=1:00:00
+#
+cd ~pounds/blascomp/OpenBLAS
+echo -- O P E N B L A S   C O M P A R I S O N --
+hostname
+echo "10000 10000 10000" >params
+export OMP_NUM_THREADS=1
+adriver <params
+export OMP_NUM_THREADS=2
+adriver <params
+export OMP_NUM_THREADS=3
+adriver <params
+export OMP_NUM_THREADS=4
+adriver <params
+export OMP_NUM_THREADS=5
+adriver <params
+export OMP_NUM_THREADS=6
+adriver <params
+export OMP_NUM_THREADS=7
+adriver <params
+export OMP_NUM_THREADS=8
+adriver <params
+export OMP_NUM_THREADS=9
+adriver <params
+export OMP_NUM_THREADS=10
+adriver <params
+export omp_num_threads=11
+adriver <params
+export OMP_NUM_THREADS=12
+adriver <params
+export OMP_NUM_THREADS=13
+adriver <params
+export OMP_NUM_THREADS=14
+adriver <params
+export OMP_NUM_THREADS=15
+adriver <params
+export OMP_NUM_THREADS=16
+adriver <params
+export OMP_NUM_THREADS=17
+adriver <params
+export OMP_NUM_THREADS=18
+adriver <params
+export OMP_NUM_THREADS=19
+adriver <params
+export OMP_NUM_THREADS=20
+adriver <params
+export omp_num_threads=21
+adriver <params
+export OMP_NUM_THREADS=22
+adriver <params
+export OMP_NUM_THREADS=23
+adriver <params
+export OMP_NUM_THREADS=24
+adriver <params
+export OMP_NUM_THREADS=25
+adriver <params
+export OMP_NUM_THREADS=26
+adriver <params
+export OMP_NUM_THREADS=27
+adriver <params
+export OMP_NUM_THREADS=28
+adriver <params
+export OMP_NUM_THREADS=29
+adriver <params
+export OMP_NUM_THREADS=30
+adriver <params
+export omp_num_threads=31
+adriver <params
+export OMP_NUM_THREADS=32
+adriver <params
+export OMP_NUM_THREADS=33
+adriver <params
+export OMP_NUM_THREADS=34
+adriver <params
+export OMP_NUM_THREADS=35
+adriver <params
+export OMP_NUM_THREADS=36
+adriver <params
+export OMP_NUM_THREADS=37
+adriver <params
+export OMP_NUM_THREADS=38
+adriver <params
+export OMP_NUM_THREADS=39
+adriver <params
+export OMP_NUM_THREADS=40
+adriver <params
+export omp_num_threads=41
+adriver <params
+export OMP_NUM_THREADS=42
+adriver <params
+export OMP_NUM_THREADS=43
+adriver <params
+export OMP_NUM_THREADS=44
+adriver <params
+export OMP_NUM_THREADS=45
+adriver <params
+export OMP_NUM_THREADS=46
+adriver <params
+export OMP_NUM_THREADS=47
+adriver <params
+export OMP_NUM_THREADS=48
+adriver <params

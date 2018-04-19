@@ -4,7 +4,7 @@
 #PBS -l nodes=1:hammer:ppn=42
 #PBS -l walltime=1:00:00
 #
-cd ~pounds/blascomp/OpenBLAS
+cd ~pounds/openblas_starting
 echo -- O P E N B L A S   C O M P A R I S O N --
 hostname
 echo "10000 10000 10000" >params

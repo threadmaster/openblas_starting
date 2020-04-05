@@ -20,7 +20,7 @@ double walltime_()
 	struct timeval tp;
 	double seconds;
 
-	rtn=gettimeofday(&tp, NULL);
+	gettimeofday(&tp, NULL);
 
 	seconds = tp.tv_sec + factor * tp.tv_usec;
 

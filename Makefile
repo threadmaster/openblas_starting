@@ -8,22 +8,25 @@
 
 F95 = gfortran   
 CC = gcc 
-FFLAGS =  -finline-functions -march=native -mtune=native -Wall  
-CFLAGS = -O3 -finline-functions -march=native -mtune=native -Wall  
+FFLAGS =  -O3  
+CFLAGS = -O3 -Wall  
 LIBS = -L/usr/lib64  -lopenblaso 
 
 OBJS = array.o walltime.o cputime.o tprod.o 
 
-all: adriver 
-
-driver : driver.o $(OBJS)    
-	$(F95) $(FFLAGS) -o driver driver.o $(PROFILE) $(OBJS)  
+all: adriver ldriver 
 
 adriver : adriver.o $(OBJS)    
 	$(F95) -o adriver adriver.o $(OBJS) $(LIBS)  
 
 adriver.o : adriver.f90 array.o   
 	$(F95) $(FFLAGS) -c adriver.f90  
+
+ldriver : ldriver.o $(OBJS)    
+	$(F95) -o ldriver ldriver.o $(OBJS) $(LIBS)  
+
+ldriver.o : ldriver.f90 array.o   
+	$(F95) $(FFLAGS) -DBIGSYS -cpp -c ldriver.f90  
 
 walltime.o : walltime.c
 	$(CC) $(CFLAGS) -c walltime.c

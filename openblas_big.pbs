@@ -1,0 +1,105 @@
+#PBS -N OpenBLAS_DLS
+#PBS -j oe
+#PBS -m abe
+#PBS -l nodes=1:hammer:ppn=42
+#PBS -l walltime=2:00:00
+#
+cd ~pounds/openblas_starting
+echo -- O P E N B L A S   C O M P A R I S O N --
+hostname
+export OMP_NUM_THREADS=1
+ldriver 
+export OMP_NUM_THREADS=2
+ldriver 
+export OMP_NUM_THREADS=3
+ldriver 
+export OMP_NUM_THREADS=4
+ldriver 
+export OMP_NUM_THREADS=5
+ldriver 
+export OMP_NUM_THREADS=6
+ldriver 
+export OMP_NUM_THREADS=7
+ldriver 
+export OMP_NUM_THREADS=8
+ldriver 
+export OMP_NUM_THREADS=9
+ldriver 
+export OMP_NUM_THREADS=10
+ldriver 
+export omp_num_threads=11
+ldriver 
+export OMP_NUM_THREADS=12
+ldriver 
+export OMP_NUM_THREADS=13
+ldriver 
+export OMP_NUM_THREADS=14
+ldriver 
+export OMP_NUM_THREADS=15
+ldriver 
+export OMP_NUM_THREADS=16
+ldriver 
+export OMP_NUM_THREADS=17
+ldriver 
+export OMP_NUM_THREADS=18
+ldriver 
+export OMP_NUM_THREADS=19
+ldriver 
+export OMP_NUM_THREADS=20
+ldriver 
+export omp_num_threads=21
+ldriver 
+export OMP_NUM_THREADS=22
+ldriver 
+export OMP_NUM_THREADS=23
+ldriver 
+export OMP_NUM_THREADS=24
+ldriver 
+export OMP_NUM_THREADS=25
+ldriver 
+export OMP_NUM_THREADS=26
+ldriver 
+export OMP_NUM_THREADS=27
+ldriver 
+export OMP_NUM_THREADS=28
+ldriver 
+export OMP_NUM_THREADS=29
+ldriver 
+export OMP_NUM_THREADS=30
+ldriver 
+export omp_num_threads=31
+ldriver 
+export OMP_NUM_THREADS=32
+ldriver 
+export OMP_NUM_THREADS=33
+ldriver 
+export OMP_NUM_THREADS=34
+ldriver 
+export OMP_NUM_THREADS=35
+ldriver 
+export OMP_NUM_THREADS=36
+ldriver 
+export OMP_NUM_THREADS=37
+ldriver 
+export OMP_NUM_THREADS=38
+ldriver 
+export OMP_NUM_THREADS=39
+ldriver 
+export OMP_NUM_THREADS=40
+ldriver 
+export omp_num_threads=41
+ldriver 
+export OMP_NUM_THREADS=42
+ldriver 
+export OMP_NUM_THREADS=43
+ldriver 
+export OMP_NUM_THREADS=44
+ldriver 
+export OMP_NUM_THREADS=45
+ldriver 
+export OMP_NUM_THREADS=46
+ldriver 
+export OMP_NUM_THREADS=47
+ldriver 
+export OMP_NUM_THREADS=48
+ldriver 

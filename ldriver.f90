@@ -17,6 +17,14 @@ program driver
     real (kind=8) :: residual
     integer, dimension(:), allocatable :: ipiv
 
+    character (len=8) :: carg
+
+    call get_command_argument(1, carg)
+
+! Use Fortran internal files to convert command line arguments to ints
+
+    read (carg,'(i8)') nthreads 
+
     NDIM = 10000 
 
 #ifdef DEBUG
@@ -82,7 +90,10 @@ program driver
 
     ! Done with accuracy checking initializations
 
+    ! Since we are using the OpenMP version of the OpenBLAS, we should be 
+    ! able to set the number of processors for the parallel work here.
 
+    call omp_set_num_threads(nthreads)
 
     wall_start = walltime()
     cpu_start = cputime()
@@ -114,7 +125,7 @@ program driver
     mflops  = (2.0/3.0)*dble(NDIM)**3/ (cpu_end-cpu_start) / 1.0e6
     mflops2 = (2.0/3.0)*dble(NDIM)**3/ (wall_end-wall_start)/ 1.0e6
 
-    print *, NDIM, residual,  wall_end-wall_start, mflops2
+    print *, nthreads, NDIM, residual,  wall_end-wall_start, mflops2
 
     ! Free the memory that was allocated based on which version of the program was
     ! run.

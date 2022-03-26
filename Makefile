@@ -10,7 +10,7 @@ F95 = gfortran
 CC = gcc 
 FFLAGS =  -O3  
 CFLAGS = -O3 -Wall  
-LIBS = -L/usr/lib64  -lopenblaso 
+LIBS = -L/usr/lib64  -lopenblaso -lgomp 
 
 OBJS = array.o walltime.o cputime.o tprod.o 
 

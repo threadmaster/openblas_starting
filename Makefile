@@ -49,7 +49,7 @@ pristine :
 	rm *.o
 	touch *.cc *.c *.f *.f90 
 	rm *.mod
-	rm *.vect
+	rm ldriver adriver
 
 ctags :
 	ctags *.f90 *.c

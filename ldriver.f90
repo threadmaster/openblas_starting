@@ -19,7 +19,9 @@ program driver
 
     NDIM = 10000 
 
+#ifdef DEBUG
     print *, "Performing Large Direct Solver Accuracy Test"
+#endif
 
     !This portion of code is ONLY used for verifying the accuracy of the code using
     !the matrix, vector b, and solution vector x stored on the class website.
@@ -27,16 +29,22 @@ program driver
     !Download the files from theochem using curl at runtime (don't store these on anvil!)
     
     NDIM = 10000
+#ifdef DEBUG
     print *, "Copying Files from Theochem"
+#endif
     call system("curl -s -o linsolve_a.dat.gz --url http://theochem.mercer.edu/csc435/data/biglinsolve_a.dat.gz")
     call system("curl -s -o linsolve_b.dat.gz --url http://theochem.mercer.edu/csc435/data/biglinsolve_b.dat.gz")
     call system("curl -s -o linsolve_x.dat.gz --url http://theochem.mercer.edu/csc435/data/biglinsolve_x.dat.gz")
+#ifdef DEBUG
     print *, "Uncompressing files"
+#endif
     call system("gunzip linsolve_a.dat.gz")
     call system("gunzip linsolve_b.dat.gz")
     call system("gunzip linsolve_x.dat.gz")
 
+#ifdef DEBUG
     print *, "Loading files from theochem.mercer.edu into memory"
+#endif
 
     allocate ( matrixa(NDIM,NDIM), stat=ierr)
     allocate ( veca(NDIM), stat=ierr)
@@ -61,12 +69,16 @@ program driver
     enddo
     close(5)
 
+#ifdef DEBUG
     print *, "Files read into program"
+#endif
 
     ! Delete the files from disk
     call system("rm linsolve_a.dat linsolve_b.dat linsolve_x.dat")
 
+#ifdef DEBUG
     print *, "Files deleted from disk."
+#endif
 
     ! Done with accuracy checking initializations
 
@@ -103,7 +115,7 @@ program driver
     mflops  = (2.0/3.0)*dble(NDIM)**3/ (cpu_end-cpu_start) / 1.0e6
     mflops2 = (2.0/3.0)*dble(NDIM)**3/ (wall_end-wall_start)/ 1.0e6
 
-    print *, NDIM, residual, cpu_end-cpu_start, wall_end-wall_start,  mflops, mflops2
+    print *, NDIM, residual,  wall_end-wall_start, mflops2
 
     ! Free the memory that was allocated based on which version of the program was
     ! run.

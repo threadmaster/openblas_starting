@@ -26,7 +26,7 @@ ldriver : ldriver.o $(OBJS)
 	$(F95) -o ldriver ldriver.o $(OBJS) $(LIBS)  
 
 ldriver.o : ldriver.f90 array.o   
-	$(F95) $(FFLAGS) -c ldriver.f90  
+	$(F95) $(FFLAGS) -cpp -c ldriver.f90  
 
 walltime.o : walltime.c
 	$(CC) $(CFLAGS) -c walltime.c

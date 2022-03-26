@@ -98,7 +98,6 @@ program driver
 
     residual = 0.0
     do i=1, NDIM 
-        print *, vecx(i), veca(i)
         residual = max(residual, abs(vecx(i)-veca(i)))
     enddo
 

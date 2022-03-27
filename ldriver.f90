@@ -63,7 +63,7 @@ program driver
     open (unit=5,file="linsolve_a.dat",status="old")
     do i = 1, NDIM
         do j = 1, NDIM
-            read(5,*) matrixa(j,i)
+            read(5,*) matrixa(i,j)
         enddo
     enddo
     close(5)

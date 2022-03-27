@@ -58,6 +58,7 @@ program driver
     allocate ( veca(NDIM), stat=ierr)
     allocate ( vecb(NDIM), stat=ierr)
     allocate ( vecx(NDIM), stat=ierr)
+    allocate ( ipiv(NDIM), stat=ierr ) 
 
     ! NOTE - Reading in Column Major order for Fortran Processing
     open (unit=5,file="linsolve_a.dat",status="old")
@@ -99,11 +100,9 @@ program driver
     wall_start = walltime()
     cpu_start = cputime()
 
-    allocate ( ipiv(NDIM), stat=ierr ) 
     call dgetrf(NDIM,NDIM,matrixa,NDIM,ipiv,info)
     call dgetrs('T',NDIM,1,matrixa,NDIM,ipiv,vecb,NDIM,info)
     vecx = vecb
-    if (allocated(ipiv)) deallocate(ipiv)
 
     cpu_end = cputime()
     wall_end = walltime()
@@ -137,6 +136,7 @@ program driver
     if (allocated(veca)) deallocate(veca)
     if (allocated(vecb)) deallocate(vecb)
     if (allocated(vecx)) deallocate(vecx)
+    if (allocated(ipiv)) deallocate(ipiv)
 
 end program driver 
 

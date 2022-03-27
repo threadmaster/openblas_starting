@@ -59,6 +59,7 @@ program driver
     allocate ( vecb(NDIM), stat=ierr)
     allocate ( vecx(NDIM), stat=ierr)
 
+    ! NOTE - Reading in Column Major order for Fortran Processing
     open (unit=5,file="linsolve_a.dat",status="old")
     do i = 1, NDIM
         do j = 1, NDIM
@@ -100,7 +101,7 @@ program driver
 
     allocate ( ipiv(NDIM), stat=ierr ) 
     call dgetrf(NDIM,NDIM,matrixa,NDIM,ipiv,info)
-    call dgetrs('T',NDIM,1,matrixa,NDIM,ipiv,vecb,NDIM,info)
+    call dgetrs('N',NDIM,1,matrixa,NDIM,ipiv,vecb,NDIM,info)
     vecx = vecb
     if (allocated(ipiv)) deallocate(ipiv)
 

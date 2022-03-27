@@ -63,7 +63,7 @@ program driver
     open (unit=5,file="linsolve_a.dat",status="old")
     do i = 1, NDIM
         do j = 1, NDIM
-            read(5,*) matrixa(i,j)
+            read(5,*) matrixa(j,i)
         enddo
     enddo
     close(5)
@@ -101,7 +101,7 @@ program driver
 
     allocate ( ipiv(NDIM), stat=ierr ) 
     call dgetrf(NDIM,NDIM,matrixa,NDIM,ipiv,info)
-    call dgetrs('N',NDIM,1,matrixa,NDIM,ipiv,vecb,NDIM,info)
+    call dgetrs('T',NDIM,1,matrixa,NDIM,ipiv,vecb,NDIM,info)
     vecx = vecb
     if (allocated(ipiv)) deallocate(ipiv)
 

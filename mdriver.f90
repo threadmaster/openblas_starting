@@ -1,33 +1,25 @@
 program adriver 
 
 use array
-integer :: N, iter
 
 real (kind=8) :: wall_start, wall_end
-real (kind=8) :: cpu_start, cpu_end
 real (kind=8) :: trace, ONE, ZERO
 
-integer :: startval, stopval, stepval
+integer :: nthreads 
 real (kind=8) :: walltime
 real (kind=8) :: cputime 
-real (kind=8) :: mflops, mflops2
+real (kind=8) :: mflops 
 external walltime, cputime
 
-character (len=8) :: carg1, carg2, carg3
+character (len=8) :: carg1
 
 call get_command_argument(1, carg1)
-call get_command_argument(2, carg2)
-call get_command_argument(3, carg3)
 
 ! Use Fortran internal files to convert command line arguments to ints
 
-read (carg1,'(i8)') startval
-read (carg2,'(i8)') stopval
-read (carg3,'(i8)') stepval
+read (carg1,'(i8)') nthreads 
 
-do iter = startval, stopval, stepval
-
-N = iter
+N = 10000 
 
 ONE = 1.0D0
 ZERO = 0.0D0
@@ -50,6 +42,8 @@ mattrixd = 0.0D0
 call tprod(veca, N, vecb, N, matrixa, N);
 call tprod(veca, N, vecb, N, matrixb, N);
 
+call set_omp_num_threads(nthreads)
+
 wall_start = walltime()
 cpu_start = cputime()
 
@@ -66,18 +60,15 @@ enddo
 
 !print *,  "The trace is ", trace
 
-mflops  = 2.0D0 * dble(N)**3 / (cpu_end-cpu_start) / 1.0D6
-mflops2 = 2.0D0 * dble(N)**3 / (wall_end-wall_start)/ 1.0D6
+mflops = 2.0D0 * dble(N)**3 / (wall_end-wall_start)/ 1.0D6
  
-print *, N, trace, cpu_end-cpu_start, wall_end-wall_start,  mflops, mflops2
+print *, nthreads, N, trace,  wall_end-wall_start,  mflops
 
 if (allocated(matrixa) ) deallocate(matrixa)
 if (allocated(matrixb) ) deallocate(matrixb)
 if (allocated(matrixc) ) deallocate(matrixc)
 if (allocated(veca)    ) deallocate(veca)
 if (allocated(vecb)    ) deallocate(vecb)
-
-enddo
 
 
 end program adriver 

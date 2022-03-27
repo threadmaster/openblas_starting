@@ -14,13 +14,13 @@ LIBS = -L/usr/lib64  -lopenblaso -lgomp
 
 OBJS = array.o walltime.o cputime.o tprod.o 
 
-all: adriver ldriver 
+all: mdriver ldriver 
 
-adriver : adriver.o $(OBJS)    
-	$(F95) -o adriver adriver.o $(OBJS) $(LIBS)  
+mdriver : mdriver.o $(OBJS)    
+	$(F95) -o mdriver mdriver.o $(OBJS) $(LIBS)  
 
-adriver.o : adriver.f90 array.o   
-	$(F95) $(FFLAGS) -c adriver.f90  
+mdriver.o : mdriver.f90 array.o   
+	$(F95) $(FFLAGS) -c mdriver.f90  
 
 ldriver : ldriver.o $(OBJS)    
 	$(F95) -o ldriver ldriver.o $(OBJS) $(LIBS)  
@@ -49,7 +49,7 @@ pristine :
 	rm *.o
 	touch *.cc *.c *.f *.f90 
 	rm *.mod
-	rm ldriver adriver
+	rm ldriver mdriver
 
 ctags :
 	ctags *.f90 *.c

@@ -1,4 +1,4 @@
-program ldriver 
+program bldriver 
 
     integer :: NDIM
 
@@ -40,15 +40,9 @@ program ldriver
 #ifdef DEBUG
     print *, "Copying Files from Theochem"
 #endif
-    call system("curl -s -o linsolve_a.dat.gz --url http://theochem.mercer.edu/csc435/data/biglinsolve_a.dat.gz")
-    call system("curl -s -o linsolve_b.dat.gz --url http://theochem.mercer.edu/csc435/data/biglinsolve_b.dat.gz")
-    call system("curl -s -o linsolve_x.dat.gz --url http://theochem.mercer.edu/csc435/data/biglinsolve_x.dat.gz")
-#ifdef DEBUG
-    print *, "Uncompressing files"
-#endif
-    call system("gunzip linsolve_a.dat.gz")
-    call system("gunzip linsolve_b.dat.gz")
-    call system("gunzip linsolve_x.dat.gz")
+    call system("curl -s -o binary_linsolve_a.dat --url http://theochem.mercer.edu/csc435/data/binary_linsolve_a.dat")
+    call system("curl -s -o binary_linsolve_b.dat --url http://theochem.mercer.edu/csc435/data/binary_linsolve_b.dat")
+    call system("curl -s -o binary_linsolve_x.dat --url http://theochem.mercer.edu/csc435/data/binary_linsolve_x.dat")
 
 #ifdef DEBUG
     print *, "Loading files from theochem.mercer.edu into memory"
@@ -60,23 +54,17 @@ program ldriver
     allocate ( vecx(NDIM), stat=ierr)
     allocate ( ipiv(NDIM), stat=ierr ) 
 
-    ! NOTE - Reading in Column Major order for Fortran Processing
-    open (unit=5,file="linsolve_a.dat",status="old")
-    do i = 1, NDIM
-        do j = 1, NDIM
-            read(5,*) matrixa(j,i)
-        enddo
-    enddo
+    open(unit=5,file="binary_linsolve_a.dat", access="direct",&
+                recl=NDIM*NDIM*8, form="unformatted" )
+    read(5,rec=1) matrixa
     close(5)
-    open (unit=5,file="linsolve_b.dat",status="old")
-    do i = 1, NDIM
-        read(5,*) vecb(i)
-    enddo
+    open(unit=5,file="binary_linsolve_b.dat", access="direct",&
+                recl=NDIM*8, form="unformatted" )
+    read(5,rec=1) vecb 
     close(5)
-    open (unit=5,file="linsolve_x.dat",status="old")
-    do i = 1, NDIM
-        read(5,*) veca(i)
-    enddo
+    open(unit=5,file="binary_linsolve_x.dat", access="direct",&
+                recl=NDIM*8, form="unformatted" )
+    read(5,rec=1) veca 
     close(5)
 
 #ifdef DEBUG
@@ -84,11 +72,12 @@ program ldriver
 #endif
 
     ! Delete the files from disk
-    call system("rm linsolve_a.dat linsolve_b.dat linsolve_x.dat")
+    call system("rm binary_linsolve_a.dat binary_linsolve_b.dat binary_linsolve_x.dat")
 
 #ifdef DEBUG
     print *, "Files deleted from disk."
 #endif
+
 
     ! Done with accuracy checking initializations
 
@@ -138,7 +127,7 @@ program ldriver
     if (allocated(vecx)) deallocate(vecx)
     if (allocated(ipiv)) deallocate(ipiv)
 
-end program ldriver 
+end program bldriver 
 
 
 

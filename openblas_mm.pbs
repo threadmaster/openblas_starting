@@ -1,0 +1,57 @@
+#PBS -N OpenBLAS_MM
+#PBS -j oe
+#PBS -m abe
+#PBS -l nodes=1:hammer:ppn=42
+#PBS -l walltime=2:00:00
+#
+cd ~pounds/openblas_starting
+echo -- O P E N B L A S   C O M P A R I S O N --
+hostname
+mdriver  1 
+mdriver  2
+mdriver  3
+mdriver  4
+mdriver  5
+mdriver  6
+mdriver  7
+mdriver  8
+mdriver  9
+mdriver 10 
+mdriver 11 
+mdriver 12
+mdriver 13
+mdriver 14
+mdriver 15
+mdriver 16
+mdriver 17
+mdriver 18
+mdriver 19
+mdriver 20 
+mdriver 21 
+mdriver 22
+mdriver 23
+mdriver 24
+mdriver 25
+mdriver 26
+mdriver 27
+mdriver 28
+mdriver 29
+mdriver 30 
+mdriver 31 
+mdriver 32
+mdriver 33
+mdriver 34
+mdriver 35
+mdriver 36
+mdriver 37
+mdriver 38
+mdriver 39
+mdriver 40 
+mdriver 41 
+mdriver 42
+mdriver 43
+mdriver 44
+mdriver 45
+mdriver 46
+mdriver 47
+mdriver 48

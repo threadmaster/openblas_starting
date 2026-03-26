@@ -36,8 +36,8 @@ program adriver
     enddo
 
     mattrixa = 0.0D0
+    mattrixb = 0.0D0
     mattrixc = 0.0D0
-    mattrixd = 0.0D0
 
     call tprod(veca, N, vecb, N, matrixa, N);
     call tprod(veca, N, vecb, N, matrixb, N);
